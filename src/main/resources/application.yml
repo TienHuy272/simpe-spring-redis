@@ -8,3 +8,7 @@ spring:
       timeout: 2000
 server:
   port: 9595
+  compression:
+    enabled: true
+    min-response-size: 1024
+    mime-types: text/html,text/xml,text/plain,application/json,application/xml,text/css,text/javascript,application/javascript
