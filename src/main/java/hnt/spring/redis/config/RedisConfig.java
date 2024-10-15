@@ -33,10 +33,12 @@ public class RedisConfig {
         StringRedisSerializer stringRedisSerializer = new StringRedisSerializer();
         redisTemplate.setKeySerializer(stringRedisSerializer);
         redisTemplate.setHashKeySerializer(stringRedisSerializer);
+        redisTemplate.setValueSerializer(stringRedisSerializer);
 
-        Jackson2JsonRedisSerializer<Object> jsonRedisSerializer = new Jackson2JsonRedisSerializer<>(Object.class);
-        redisTemplate.setValueSerializer(jsonRedisSerializer);
-        redisTemplate.setHashValueSerializer(jsonRedisSerializer);
+
+//        Jackson2JsonRedisSerializer<Object> jsonRedisSerializer = new Jackson2JsonRedisSerializer<>(Object.class);
+//        redisTemplate.setValueSerializer(jsonRedisSerializer);
+//        redisTemplate.setHashValueSerializer(jsonRedisSerializer);
 
         redisTemplate.setEnableTransactionSupport(true);
 

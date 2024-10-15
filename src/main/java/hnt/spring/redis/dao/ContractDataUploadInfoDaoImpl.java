@@ -2,6 +2,7 @@ package hnt.spring.redis.dao;
 
 import hnt.spring.redis.dto.ContractDataUploadInfo;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -41,7 +42,7 @@ public class ContractDataUploadInfoDaoImpl implements ContractDataUploadInfoDao 
                                                                ContractDataUploadInfo contractDataUploadInfo) {
         try{
             redisTemplate.opsForHash().put(HASH_KEY,
-                    contractId,
+                    contractId.toString(),
                     contractDataUploadInfo);
             return contractDataUploadInfo;
         }catch(Exception e){
@@ -72,8 +73,7 @@ public class ContractDataUploadInfoDaoImpl implements ContractDataUploadInfoDao 
 
     @Override
     public ContractDataUploadInfo getContractDataUploadInfo(Long contractId) {
-        ContractDataUploadInfo contractDataUploadInfo =
-                (ContractDataUploadInfo) redisTemplate.opsForHash().get(HASH_KEY,contractId.toString());
+        ContractDataUploadInfo contractDataUploadInfo= (ContractDataUploadInfo) redisTemplate.opsForHash().get(HASH_KEY,contractId.toString());
         return contractDataUploadInfo;
     }
 }
